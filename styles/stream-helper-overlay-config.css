@@ -1,0 +1,55 @@
+.sheet-footer {
+    display: flex;
+    flex-direction: row;
+    justify-items: space-between;
+}
+
+.widget-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    gap: 7px;
+}
+
+.toggle-element-option {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.draggable-item {
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.resizer {
+    width: 10px;
+    height: 10px;
+    background: #5252d773;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    cursor: nwse-resize;
+    z-index: 10;
+}
+
+.draggable-item.is-selected {
+    outline: 2px solid #ff6400; /* Laranja épico */
+    outline-offset: 2px;
+    background-color: rgba(255, 100, 0, 0.2) !important;
+}
+
+/* Ocultar o resizer se não estiver selecionado para limpar a UI */
+.draggable-item:not(.is-selected) .resizer {
+    display: none;
+}
+
+.property-panel {
+    margin: 10px 0px;
+}
+
+.property-editing, .property-editing label {
+    display: flex;
+    flex-direction: column;
+}

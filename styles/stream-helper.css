@@ -1,0 +1,20 @@
+#stream-helper {
+    position: fixed;
+    background: rgba(0, 255, 0, 1);
+    color: #eee;
+    padding: 10px;
+    pointer-events: all;
+    width: initial !important;
+    left: initial !important;
+    top: initial !important;
+    max-width: initial !important;
+    max-height: initial !important;
+    min-width: 100px !important;
+    min-height: 100px !important;
+}
+
+.window-header {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+}

@@ -1,0 +1,28 @@
+{
+  "id": "stream-helper",
+  "title": "Stream Helper",
+  "version": "0.0.1",
+  "compatibility": {
+    "minimum": "14",
+    "verified": "14"
+  },
+  "authors": [
+    {
+      "name": "Underzon",
+      "flags": {}
+    }
+  ],
+  "flags": {
+    "canUpload": true
+  },
+  "action": "manageModule",
+  "description": "",
+  "esmodules": [
+    "scripts/stream-helper.js",
+    "scripts/stream-overlay.js"
+  ],
+  "styles": [
+    "styles/stream-helper.css",
+    "styles/stream-helper-overlay-config.css"
+  ]
+}

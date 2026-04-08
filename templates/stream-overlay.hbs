@@ -1,0 +1,28 @@
+
+<section class="stream-overlay-root" style="position: relative; display: flex; gap: 20px;">
+    {{#each players as |player|}}
+        <div class="player-container" style="position: relative;">
+            
+            {{!-- Imagem de fundo --}}
+            <img src="{{../layout.bgImage}}">
+            
+            {{#each ../layout.widgets}}
+                {{#if this.enabled}}
+                    <div class="widget-display" 
+                         style="position: absolute; top: {{this.top}}px; left: {{this.left}}px; white-space: nowrap; z-index: {{this.zIndex}}">
+                        
+                        {{#if (eq this.type "portrait")}}
+                            <img src="{{lookup player this.type}}" width="{{this.width}}px" height="{{this.height}}px" style="border: none;">
+                        {{else}}
+                            <span style="display: block; color:{{this.color}}; font-family:'{{this.fontFamily}}'; font-size:{{this.fontSize}}px;" width="{{this.width}}px" height="{{this.height}}px">{{lookup player this.type}}</span>
+                        {{/if}}
+                        
+                    </div>
+                {{/if}}
+            {{/each}}
+
+        </div>
+    {{/each}}
+
+</section>
+

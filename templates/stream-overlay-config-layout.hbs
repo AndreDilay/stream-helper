@@ -1,0 +1,76 @@
+<section class="stream-overlay-config-layout-root">
+    <div class="editor-canvas"
+        style="position: relative; overflow: auto; background: #222; padding: 20px; display: flex; justify-content: center;">
+
+        {{!-- Este container garante que (0,0) seja sempre o canto da imagem --}}
+        <div class="canvas-stage" style="position: relative; width: fit-content; height: fit-content;">
+            <img src="{{config.bgImage}}" style="display: block; max-width: none; z-index: 5; pointer-events: none;">
+
+            {{#each config.widgets}}
+            {{#if this.enabled}}
+            <div class="draggable-item {{ifThen (eq this.id ../config.selectedWidget.id) 'is-selected' ''}}"
+                data-id="{{this.id}}"
+                style="color:black; position: absolute; color: {{this.color}}; font-size: {{this.fontSize}}px; font-family: {{this.fontFamily}}; z-index: {{this.zIndex}}; top: {{this.top}}px; left: {{this.left}}px; width: {{this.width}}px; height: {{this.height}}px; border: 1px dashed white; background: rgba(221, 221, 221, 0.5);">
+                <span>{{this.name}}</span>
+            </div>
+            {{/if}}
+            {{/each}}
+        </div>
+    </div>
+    <aside class="widget-selector">
+        <h4>Avaliable Elements</h4>
+        <div class="widget-list">
+            {{#each config.widgets}}
+            <div class="toggle-element-option">
+                <input type="checkbox" id="chk-{{this.type}}" data-action="toggleWidget" data-type="{{this.type}}"
+                    {{ifThen this.enabled "checked" "" }}>
+                <label for="chk-{{this.type}}">{{this.name}}</label>
+            </div>
+            {{/each}}
+        </div>
+    </aside>
+    <aside class="property-panel">
+        {{#if config.selectedWidget}}
+        <h4>Now editing: {{config.selectedWidget.name}}</h4>
+        <div class="property-editing">
+            <label>
+                Layer (Z-Index)
+                <input type="number" data-prop="zIndex" value="{{config.selectedWidget.zIndex}}">
+            </label>
+            
+            {{#unless (eq config.selectedWidget.type "portrait")}}
+                <label>Font color:
+                    <input type="color" data-prop="color" value="{{config.selectedWidget.color}}">
+                </label>
+
+                <label>Font Size (px):
+                    <input type="number" data-prop="fontSize" value="{{config.selectedWidget.fontSize}}">
+                </label>
+
+                <label>Font Family:
+                    <select data-prop="fontFamily">
+                        {{!-- Helper eq para manter a opção selecionada no rascunho --}}
+                        <option value="Arial" {{ifThen (eq config.selectedWidget.fontFamily "Arial" ) "selected" "" }}>Arial
+                        </option>
+                        <option value="Times New Roman" {{ifThen (eq config.selectedWidget.fontFamily "Times New Roman"
+                            ) "selected" "" }}>Times</option>
+                        <option value="Modesto Condensed" {{ifThen (eq config.selectedWidget.fontFamily "Modesto Condensed"
+                            ) "selected" "" }}>Foundry Standard</option>
+                    </select>
+                </label>
+            {{/unless}}
+        </div>
+
+        {{else}}
+        <p>Select an item on the canvas to edit</p>
+        {{/if}}
+    </aside>
+    <footer class="sheet-footer">
+        <button type="button" data-action="defaultLayout" class="restore-button">
+            <i class="fas fa-repeat"></i> Restore Layout
+        </button>
+        <button type="button" data-action="saveLayout" class="save-button">
+            <i class="fas fa-save"></i> Save
+        </button>
+    </footer>
+</section>
